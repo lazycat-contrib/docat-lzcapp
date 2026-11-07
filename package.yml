@@ -1,0 +1,17 @@
+package: community.lazycat.app.docat
+name: Docat
+description: "Self-hosted documentation hosting: upload HTML docs for projects, version them and share."
+version: 1.6.1
+min_os_version: "1.5.0"
+homepage: https://docat.sh
+author: docat-org
+license: MIT
+permissions:
+  required: []
+locales:
+  zh:
+    name: Docat
+    description: "自托管文档托管服务：为项目上传 HTML 文档并管理版本，开源版 readthedocs 思路。"
+  en:
+    name: Docat
+    description: "Self-hosted documentation hosting: upload HTML docs for projects with versioning."

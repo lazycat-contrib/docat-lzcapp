@@ -1,0 +1,27 @@
+application:
+  subdomain: docat
+  multi_instance: false
+  # docat has no user accounts or login page: project write access relies on
+  # self-service per-project claim tokens, so it stays behind the platform
+  # entrance authentication (no public_path, per no-account rule).
+  upstreams:
+    - location: /
+      backend: http://docat:80/
+services:
+  docat:
+    # upstream: ghcr.io/docat-org/docat:1.6.1
+    image: ghcr.1ms.run/docat-org/docat:1.6.1
+    binds:
+      - /lzcapp/var/docat:/var/docat
+usage: |
+  Docat 是自托管文档托管服务（开源版 readthedocs 思路）：把项目的 HTML 文档
+  按项目名上传，支持多版本管理、标签与隐藏版本，适合团队或个人托管文档站。
+
+  使用说明：
+    - 文档站对能访问应用入口的人公开浏览（docat 的设计即为公开阅读）。
+    - 上传/删除/改名等管理操作依赖按项目领取的 API token：某项目第一次上传
+      时会返回并保存一个 token，后续对该项目的操作需携带它。
+    - 命令行上传：pip install docat-cli，然后 docat upload <项目> <目录> <版本>。
+    - 应用没有账号和登录页，入口由平台鉴权保护。
+    - 未做实机验证。
+version: 1
